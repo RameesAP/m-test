@@ -2,12 +2,15 @@ import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import dotenv from 'dotenv'
+import morgan from "morgan";
+import cameraRoutes from './Routes/cameraRoutes.js'
 
 const app = express()
 
 //middleware
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
+app.use(morgan('dev'))
 
 //.envfile
 dotenv.config()
@@ -19,3 +22,6 @@ mongoose.connect(process.env.MONGO_DB,
 .then(() => app.listen(process.env.PORT,
 () => console.log(`listening ${process.env.PORT}`)))
 .catch((error)=>console.log(error))
+
+//usage of routes
+app.use('/',cameraRoutes)
