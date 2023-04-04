@@ -1,19 +1,19 @@
 import mongoose from "mongoose";
 
-const camerasSchema = mongoose.Schema(
+const cameraNetworksSchema = mongoose.Schema(
     {
         name: {
             type: String,
             required: true
         },
-        description: {
+        descriptions: {
             type: String,
             required: true
         },
-        url: {
-            type: String,
-            required: true
-        },
+        cameras: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Cameras',
+        }],
         created: {
             type: Date,
             required: true,
@@ -23,5 +23,5 @@ const camerasSchema = mongoose.Schema(
     }
 )
 
-const camerasModel = mongoose.model('Cameras', camerasSchema)
-export default camerasModel
+const networkModel = mongoose.model("Networks", cameraNetworksSchema)
+export default networkModel
