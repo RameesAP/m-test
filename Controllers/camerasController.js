@@ -1,4 +1,5 @@
 import camerasModel from '../Models/camerasModel.js'
+import networkModel from "../Models/cameraNetworkModel.js";
 
 //create
 export const addCam = async (req, res) => {
@@ -46,6 +47,11 @@ export const deleteCam = async (req,res)=>{
     const id =req.params.id
     try {
         const cam=await camerasModel.findById(id)
+        // Remove camera from all networks
+        await networkModel.updateMany({},{ $pull: { cam: id } })
+        // Remove camera from CameraNetworks table
+        await camerasModel.deleteMany({cam: id})
+         // Delete camera from Camera table
         await cam.deleteOne()
         res.status(200).json("Post Deleted Successfully")
     } catch (error) {
