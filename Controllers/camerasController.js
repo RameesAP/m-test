@@ -1,4 +1,3 @@
-import networkModel from '../Models/cameraNetworkModel.js'
 import camerasModel from '../Models/camerasModel.js'
 
 //create
