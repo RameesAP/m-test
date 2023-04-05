@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import dotenv from 'dotenv'
 import morgan from "morgan";
 import cameraRoutes from './Routes/cameraRoutes.js'
+import cameraNetworksRoutess from './Routes/cameraNetworksRoutes.js'
 
 const app = express()
 
@@ -25,3 +26,4 @@ mongoose.connect(process.env.MONGO_DB,
 
 //usage of routes
 app.use('/',cameraRoutes)
+app.use('/',cameraNetworksRoutess)

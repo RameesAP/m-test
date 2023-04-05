@@ -3,6 +3,8 @@ import { addCam, deleteCam, getCam, getCams, updateCam } from '../Controllers/ca
 
 const router =express.Router()
 
+
+//camerasRoutes
 router.post('/addcam',addCam)
 router.get('/getcams',getCams)
 router.get('/getcam/:id',getCam)
